@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<canvas id="grafico"></canvas>
+
+<script>
+fetch('dados.json')
+.then(res => res.json())
+.then(data => {
+
+    const labels = Object.keys(data);
+    const values = Object.values(data);
+
+    new Chart(document.getElementById("grafico"), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Frequência',
+                data: values
+            }]
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

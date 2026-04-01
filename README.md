@@ -1,6 +1,6 @@
 # 🎯 Mega-Sena AI Simulator
 
-Sistema de simulação, análise estatística e geração inteligente de apostas da Mega-Sena utilizando Java.
+Sistema de simulação, análise estatística e geração inteligente de apostas da Mega-Sena utilizando Java + Spring Boot.
 
 ---
 
@@ -15,18 +15,13 @@ Este projeto simula milhões de jogos da Mega-Sena utilizando regras customizada
 
 ---
 
-## 🧠 Arquitetura
-
-Simulação → Ranking → Histórico → Análise → IA → Exportação (JSON)ls
-
-
----
-
 ## ⚙️ Funcionalidades
 
 ### 🎲 Simulação
 - Geração massiva de jogos (multithread)
-- Regra de filtro: números pares ou > 30
+- Uso de múltiplas threads (`Worker`)
+- Regra de filtro:
+  - números pares OU maiores que 30
 
 ---
 
@@ -39,20 +34,21 @@ Simulação → Ranking → Histórico → Análise → IA → Exportação (JSO
 
 ### 📈 Tendência
 - Detecta números:
-  - 📈 Subindo
-  - 📉 Caindo
+  - 📈 Subindo (HI)
+  - 📉 Caindo (LOW)
 
 ---
 
 ### 🤖 Inteligência Artificial
-- Algoritmo evolutivo (tipo genético)
-- Seleciona os melhores jogos com base em score
+- Algoritmo evolutivo (heurística)
+- Geração de jogos inteligentes
+- Seleção baseada em score
 
 ---
 
 ### 🏆 Score dos Jogos
-- Avaliação baseada na força dos números
-- Permite comparar qualidade entre apostas
+- Avalia força de cada jogo
+- Permite comparar apostas
 
 ---
 
@@ -64,68 +60,131 @@ Simulação → Ranking → Histórico → Análise → IA → Exportação (JSO
 
 ### 🌐 Exportação JSON
 - Gera arquivo `dados.json`
-- Integração com dashboard (Chart.js)
+- Usado para dashboard web
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🌐 API REST
 
-    src/
-    ├── index.html  
-    ├── Simulador.java
-    ├── Worker.java
-    ├── RankingService.java
-    ├── EstatisticaService.java
-    ├── AnaliseService.java
-    ├── TendenciaService.java
-    ├── IAService.java
-    ├── HistoricoService.java
-    ├── ExportService.java
-
-
-    ---
-
-## ▶️ Como Executar
-
-### Compilar
+### ▶️ Como executar
 
 ```bash
-javac *.java
+mvn spring-boot:run 
+
+# 🎯 Mega-Sena AI Simulator
+
+Sistema de simulação, análise estatística e geração inteligente de apostas da Mega-Sena utilizando Java + Spring Boot.
 
 ---
 
-## ▶️ Como Executar
+## 🚀 Visão Geral
 
-### Compilar
+Este projeto simula milhões de jogos da Mega-Sena utilizando regras customizadas, analisa frequências, aprende com histórico e gera apostas otimizadas com base em:
+
+- 📊 Probabilidade
+- 🔥 Frequência (ranking)
+- 📈 Tendência (subindo/caindo)
+- 🤖 Algoritmo evolutivo (IA simples)
+
+---
+
+## ⚙️ Funcionalidades
+
+### 🎲 Simulação
+- Geração massiva de jogos (multithread)
+- Uso de múltiplas threads (`Worker`)
+- Regra de filtro:
+  - números pares OU maiores que 30
+
+---
+
+### 📊 Análise Estatística
+- Probabilidade (%) por número
+- Ranking de frequência
+- Números quentes 🔥 e frios ❄️
+
+---
+
+### 📈 Tendência
+- Detecta números:
+  - 📈 Subindo (HI)
+  - 📉 Caindo (LOW)
+
+---
+
+### 🤖 Inteligência Artificial
+- Algoritmo evolutivo (heurística)
+- Geração de jogos inteligentes
+- Seleção baseada em score
+
+---
+
+### 🏆 Score dos Jogos
+- Avalia força de cada jogo
+- Permite comparar apostas
+
+---
+
+### 💾 Histórico
+- Salva jogos gerados
+- Permite aprendizado contínuo
+
+---
+
+### 🌐 Exportação JSON
+- Gera arquivo `dados.json`
+- Usado para dashboard web
+
+---
+
+## 🌐 API REST
+
+### ▶️ Como executar
 
 ```bash
-javac *.java
+mvn spring-boot:run
 
-📊 Exemplo de Saída
-🚀 RODADA 1
 
-🔥 TOP 10 REAL: [8, 35, 48, 50, 57, 59, ...]
+ou
 
-🎯 APOSTA PRINCIPAL:
-[8, 35, 48, 50, 57, 59]
+./mvnw spring-boot:run
 
-📈 SUBINDO:
-[44, 32, 50, ...]
+🌐 Abrir Swagger
+http://localhost:8080/swagger-ui.html
 
-📉 CAINDO:
-[1, 3, 5, ...]
 
-🏆 SCORE DOS JOGOS:
-[8, 35, 48, 50, 57, 59] → Score: 720000
 
-🤖 MELHORES JOGOS (IA):
-[10, 32, 44, 50, 57, 60]
+📈 O que o dashboard mostra
+Top 10 números
+Probabilidade (%)
+Tendência (HI / LOW)
+Jogos gerados pela IA
+📁 Estrutura do Projeto
+        src/main/java/com/Mega_Sena/demo/
 
-📊 Dashboard (Opcional)
+        ├── controller/
+        │   └── MegaController.java
+        │
+        ├── service/
+        │   ├── Simulador.java
+        │   ├── Worker.java
+        │   ├── RankingService.java
+        │   ├── EstatisticaService.java
+        │   ├── TendenciaService.java
+        │   ├── IAService.java
+        │   ├── HistoricoService.java
+        │   └── AnaliseService.java
+        │
+        └── MegaApplication.java
+🧠 Conceito do Sistema
 
-Use o arquivo dados.json com um frontend simples em HTML + Chart.js:
+O sistema funciona em etapas:
 
-fetch('dados.json')
+Simulação massiva (multithread)
+Cálculo de frequência
+Conversão em probabilidade
+Análise de tendência
+Geração de jogos inteligentes
 ⚠️ Observação Importante
 
 Este sistema:
@@ -133,25 +192,26 @@ Este sistema:
 ❌ NÃO prevê resultados reais
 ✔️ É baseado em simulação e heurísticas
 
-A Mega-Sena real é um sistema totalmente aleatório.
+A Mega-Sena é um sistema totalmente aleatório.
 
 🎯 Objetivo do Projeto
-        Praticar:
-        Java
-        Estruturas de dados
-        Concorrência (multithreading)
-        Estatística aplicada
-        Arquitetura de sistemas
+
+Praticar:
+
+Java
+Estruturas de dados
+Concorrência (multithreading)
+Estatística aplicada
+Arquitetura de sistemas
+APIs REST
 🚀 Possíveis Evoluções
-🌐 API REST (Spring Boot)
+🌐 Dashboard em React
 🗄️ Banco de dados (PostgreSQL)
-📈 Dashboard em tempo real
+📡 Atualização em tempo real (WebSocket)
 🤖 Machine Learning real
 📱 App mobile
+
+
 👨‍💻 Autor
 
 John Lima
-
-⭐ Se curtir o projeto
-
-Deixa uma estrela ⭐ no repositório!

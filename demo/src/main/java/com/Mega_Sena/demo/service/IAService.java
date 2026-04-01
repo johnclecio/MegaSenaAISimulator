@@ -1,3 +1,5 @@
+package com.Mega_Sena.demo.service;
+
 import java.util.*;
 
 public class IAService {
@@ -16,11 +18,11 @@ public class IAService {
         int g = 0;
 
         while (g < geracoes) {
-
+    
             // ordena por score
             populacao.sort((a, b) ->
                     estat.calcularScore(b, ranking) -
-                    estat.calcularScore(a, ranking));
+                            estat.calcularScore(a, ranking));
 
             // mantém top 50%
             List<List<Integer>> nova = new ArrayList<>();

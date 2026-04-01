@@ -1,3 +1,5 @@
+package com.Mega_Sena.demo.service;
+
 import java.util.*;
 
 public class RankingService {
@@ -10,9 +12,9 @@ public class RankingService {
         List<Integer> top = new ArrayList<>();
 
         int i = 0;
-       int limite = Math.min(n, lista.size());
+        int limite = Math.min(n, lista.size());
 
-       
+
         while (i < limite) {
             top.add(lista.get(i).getKey());
             i++;
@@ -52,7 +54,7 @@ public class RankingService {
         return jogos;
     }
 
-        public Map<Integer, Integer> combinar(Map<Integer, Integer> sim, Map<Integer, Integer> hist) {
+    public Map<Integer, Integer> combinar(Map<Integer, Integer> sim, Map<Integer, Integer> hist) {
 
         Map<Integer, Integer> combinado = new HashMap<>();
 

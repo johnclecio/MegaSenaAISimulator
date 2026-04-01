@@ -71,8 +71,7 @@ Simulação → Ranking → Histórico → Análise → IA → Exportação (JSO
 ## 📁 Estrutura do Projeto
 
     src/
-    ├── index.html
-    ├── Main.java
+    ├── index.html  
     ├── Simulador.java
     ├── Worker.java
     ├── RankingService.java

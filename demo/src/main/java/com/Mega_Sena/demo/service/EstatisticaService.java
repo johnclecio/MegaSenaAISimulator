@@ -1,3 +1,5 @@
+package com.Mega_Sena.demo.service;
+
 import java.util.*;
 
 public class EstatisticaService {
@@ -31,7 +33,7 @@ public class EstatisticaService {
         while (i < n) {
             quentes.add(lista.get(i).getKey());
             i++;
-            
+
         }
 
         return quentes;

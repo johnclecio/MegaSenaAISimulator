@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Mega Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<h2>📊 Frequência dos Números</h2>
+
 <canvas id="grafico"></canvas>
 
 <script>
-fetch('dados.json')
-.then(res => res.json())
-.then(data => {
+  fetch('http://localhost:8080/mega/probabilidade')
+    .then(res => res.json())
+    .then(data => {
 
-    const labels = Object.keys(data);
-    const values = Object.values(data);
+        const labels = Object.keys(data);
+        const values = Object.values(data);
 
     new Chart(document.getElementById("grafico"), {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Frequência',
+                label: 'Probabilidade (%)',
                 data: values
             }]
-        }
+    }
     });
 
 });
 </script>
-
 </body>
 </html>

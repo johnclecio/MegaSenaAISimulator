@@ -1,4 +1,4 @@
-package com.Mega_Sena.demo;
+package com.testemegasena.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

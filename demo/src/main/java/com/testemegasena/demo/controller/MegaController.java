@@ -1,6 +1,11 @@
-import com.Mega_Sena.demo.service.*;
+package com.testemegasena.demo.controller;
+
+
+import com.testemegasena.demo.service.*;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+
 
 @CrossOrigin(origins = "*")
 @RestController

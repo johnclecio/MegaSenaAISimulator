@@ -1,15 +1,11 @@
-package com.Mega_Sena.demo.service;
+package com.testemegasena.demo.service;
 
-// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.stereotype.Service;
+import java.io.*;
+import java.util.*;
 
+@Service
 public class AnaliseService {
-    public AnaliseService() {
-    }
 
     public Map<Integer, Integer> gerarRankingHistorico() {
 
@@ -23,11 +19,15 @@ public class AnaliseService {
 
         try {
 
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            getClass().getClassLoader().getResourceAsStream("historico.csv")
-                    )
-            );
+            InputStream input = getClass()
+                    .getClassLoader()
+                    .getResourceAsStream("historico.csv");
+
+            if (input == null) {
+                throw new RuntimeException("Arquivo historico.csv não encontrado");
+            }
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             String linha;
 
@@ -54,10 +54,9 @@ public class AnaliseService {
             reader.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Erro ao processar histórico", e);
         }
 
         return ranking;
     }
 }
-

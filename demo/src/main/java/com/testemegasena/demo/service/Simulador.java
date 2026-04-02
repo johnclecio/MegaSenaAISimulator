@@ -1,4 +1,4 @@
-package com.Mega_Sena.demo.service;
+package com.testemegasena.demo.service;
 
 import org.springframework.stereotype.Service;
 

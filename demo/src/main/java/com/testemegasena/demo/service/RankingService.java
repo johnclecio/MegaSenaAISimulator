@@ -1,7 +1,10 @@
-package com.Mega_Sena.demo.service;
+package com.testemegasena.demo.service;
+
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class RankingService {
 
     public List<Integer> gerarTopN(Map<Integer, Integer> ranking, int n) {

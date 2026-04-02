@@ -55,13 +55,15 @@ public class TendenciaService {
                 new ArrayList<>(tendencia.entrySet());
 
         // ordena do menor pro maior (mais negativo primeiro)
-        lista.sort((a, b) -> a.getValue() - b.getValue());
+        lista.sort((a, b) ->
+                Integer.compare(a.getValue(), b.getValue()));
 
         List<Integer> low = new ArrayList<>();
 
-        int i = 0;
+        int limite = Math.min(n, lista.size());
 
-        while (i < n) {
+        int i = 0;
+        while (i < limite) {
             low.add(lista.get(i).getKey());
             i++;
         }

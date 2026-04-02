@@ -7,6 +7,9 @@ import java.util.*;
 @Service
 public class Simulador {
 
+    private Map<Integer, Integer> cache;
+    private long lastUpdate = 0;
+
     public Map<Integer, Integer> executar(int threads, int simulacoesPorThread) {
 
         List<Worker> workers = new ArrayList<>();
@@ -22,8 +25,9 @@ public class Simulador {
         for (Worker w : workers) {
             try {
                 w.join();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Erro ao aguardar thread: " + e.getMessage());
             }
         }
 
@@ -45,4 +49,25 @@ public class Simulador {
 
         return rankingGlobal;
     }
-}
+
+  
+        public Map<Integer, Integer> executarComCache(int threads, int simulacoesPorThread) {
+
+            long agora = System.currentTimeMillis();
+
+            // atualiza a cada 10 segundos
+            if (cache == null || (agora - lastUpdate) > 10000) {
+
+                cache = executar(threads, simulacoesPorThread);
+                lastUpdate = agora;
+
+                System.out.println("🔥 Simulação atualizada");
+            } else {
+                System.out.println("⚡ Usando cache");
+            }
+
+            return cache;
+        }
+    }
+
+
